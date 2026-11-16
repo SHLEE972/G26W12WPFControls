@@ -1,4 +1,6 @@
-﻿namespace G26W12WPFControls;
+﻿using System.Collections.ObjectModel;
+
+namespace G26W12WPFControls;
 
 public record Song(string Title, string Singer, string Genre);
 
@@ -6,8 +8,9 @@ public class SongModel
 {
     public static readonly string[] GENRES = ["발라드", "힙합", "트로트", "댄스", "팝", "기타"];
 
-    private readonly List<Song> _songs = [];
-    public List<Song> Songs => _songs;
+    //private readonly List<Song> _songs = [];
+    private readonly ObservableCollection<Song> _songs = [];
+    public ObservableCollection<Song> Songs => _songs;
 
     public Song? AddSong(string title, string singer, string genre)
     {
@@ -18,6 +21,11 @@ public class SongModel
         _songs.Add(song);
 
         return song;
+    }
+
+    public void RemoveSong(Song song)
+    {
+        _songs.Remove(song);
     }
 
     // 마지막 글자에 종성이 있는지 판별 (한글만 가능, 그 외 문자는 false 반환)

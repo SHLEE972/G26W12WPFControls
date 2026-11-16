@@ -23,6 +23,23 @@ public partial class SongViewModel(
 
     public ObservableCollection<string> Genres { get; } = [.. SongModel.GENRES];
 
+    public ObservableCollection<Song> Songs => model.Songs;
+
+
+    [ObservableProperty]
+    private Song? _selectedSong;
+
+    [RelayCommand]
+    private void RemoveSong()
+    {
+        if (SelectedSong is null)
+            return;
+
+        model.RemoveSong(SelectedSong);
+        SelectedSong = null;
+    }
+
+        
     [RelayCommand]
     private void AddSong()
     {
