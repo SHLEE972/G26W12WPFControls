@@ -4,7 +4,7 @@ using System.Text;
 
 namespace G26W12WPFControls
 {
-    internal class SongModel
+    internal class SongModel 
     {
     }
 }
